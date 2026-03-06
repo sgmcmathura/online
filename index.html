@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+    <center><h2>SIDS SCHOOL MATHURA<h2>
+        <h2>Login Protal</h2></center>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <script>
+        // Hardcoded user IDs and passwords
+        const users = [
+            { username: "divya", password: "divya@123", redirectLink: "https://www.sanskriti.edu.in/" },
+            
+            { username: "yogesh", password: "yogesh@123", redirectLink: "https://mounthillacademy.in/" },
+            
+            { username: "priya", password: "priya@123", redirectLink: "https://kanhamakhan.com/" },
+            
+            { username: "student1", password: "password1", redirectLink: "student1.html" },
+            // Add more users here
+        ];
+
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                const firstName = user.username.split(/[0-9]+/)[0]; // Extract first name
+                const welcomeMessage = `Welcome, ${firstName}!`;
+
+                document.getElementById("error-message").textContent = welcomeMessage;
+
+                // Redirect to the appropriate page
+                window.location.href = user.redirectLink;
+            } else {
+                document.getElementById("error-message").textContent = "Invalid username or password.";
+            }
+        });
+    </script>
+</body>
+</html>
